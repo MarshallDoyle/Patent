@@ -224,7 +224,7 @@ def Light_abbreviations(name):
 
 def corp_phrase(name):
     # Adjusted pattern to ensure 'a corp' is preceded by a space or parenthesis
-    pattern = r'(\s|\()(a corp|corp of|corporation of|a delaware).*'
+    pattern = r'(\s|\()(a corp|delaware corp|delaware inc|corp of|corporation of|a delaware).*'
     return re.sub(pattern, '', name, flags=re.IGNORECASE).strip()
 
 
