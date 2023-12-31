@@ -33,8 +33,8 @@ case "$SLURM_ARRAY_TASK_ID" in
     2)
         INPUT_FILE="/N/u/gklinge/Quartz/assignees_unique_dirty.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all_unique.csv"
-        COLUMN_TO_READ=1
-        COLUMN_TO_COPY_TO=3
+        COLUMN_TO_READ=0
+        COLUMN_TO_COPY_TO=1
         ;;
     3)
         INPUT_FILE="/N/u/gklinge/Quartz/capitaliq_cusip_dirty.csv"
