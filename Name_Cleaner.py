@@ -223,8 +223,11 @@ def Light_abbreviations(name):
     return name.strip()
 
 def corp_phrase(name):
-    pattern = r'(a corp|corp of|corporation of|a delaware).*'
-    return re.sub(pattern, '', name, flags=re.IGNORECASE)
+    # Adjusted pattern to ensure 'a corp' is preceded by a space or parenthesis
+    pattern = r'(\s|\()(a corp|corp of|corporation of|a delaware).*'
+    return re.sub(pattern, '', name, flags=re.IGNORECASE).strip()
+
+
 
 # Main function to clean and standardize company names
 
