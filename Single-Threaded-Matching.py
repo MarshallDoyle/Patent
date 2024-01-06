@@ -116,23 +116,27 @@ def match_and_combine_data(
         fuzzy_match_start = time.time()
         for i, row in enumerate(data1_uncleaned):
             if not row[uncleaned_assignee_col].strip():  # Skip empty or whitespace-only strings
+                unmatched_row = {**row, 'Match_Type': 'No Match', 'Fuzz_Score': None, 'Marshall_Score': None}
+                unmatched_writer.writerow(unmatched_row)
+                non_matches += 1
                 continue
 
             match_start_time = time.time()  # Start timer for this match
             fuzzy_match_result, score = process.extractOne(row[uncleaned_assignee_col], [x[uncleaned_name_match_col] for x in data2_uncleaned_match], scorer=fuzz.token_sort_ratio)
             marshall_score = get_marshall_score(row[uncleaned_assignee_col], fuzzy_match_result, score)
-    
+
             if marshall_score > 80:  # Adjusted threshold
                 fuzzy_match_index = next((index for index, match_row in enumerate(data2_uncleaned_match) if match_row[uncleaned_name_match_col] == fuzzy_match_result), None)
-                combined_row = {**row, **data2_uncleaned_match[fuzzy_match_index], 'Match_Type': 'Fuzzy'}
+                combined_row = {**row, **data2_uncleaned_match[fuzzy_match_index], 'Match_Type': 'Fuzzy', 'Fuzz_Score': score, 'Marshall_Score': marshall_score}
                 writer.writerow(combined_row)
                 fuzzy_matches += 1
-                match_end_time = time.time()  # End timer for this match
-                print(f"Fuzzy Match - Row {i+1}, Assignee Name: {row[uncleaned_assignee_col]}, Company Match: {fuzzy_match_result}, Score: {score}, Marshall Score: {marshall_score}, Time Taken: {match_end_time - match_start_time:.6f} seconds")
             else:
-                unmatched_row = {**row, 'Match_Type': 'No Match'}
+                unmatched_row = {**row, 'Match_Type': 'No Match', 'Fuzz_Score': score, 'Marshall_Score': marshall_score}
                 unmatched_writer.writerow(unmatched_row)
                 non_matches += 1
+
+            match_end_time = time.time()  # End timer for this match
+            print(f"Fuzzy Match - Row {i+1}, Assignee Name: {row[uncleaned_assignee_col]}, Company Match: {fuzzy_match_result if marshall_score > 80 else 'No Match'}, Score: {score}, Marshall Score: {marshall_score}, Time Taken: {match_end_time - match_start_time:.6f} seconds")
 
         fuzzy_match_end = time.time()
         print(f"Time for fuzzy matching: {fuzzy_match_end - fuzzy_match_start:.6f} seconds")

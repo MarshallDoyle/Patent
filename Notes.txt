@@ -1,0 +1,10 @@
+Keep a ledger of all the datasets you have and the column headers here to make things simple and keep track of progress.
+
+Assignee all
+    0: Assignee
+    1: File date this is just an example
+    2: Patnum
+
+Gvkey
+    0: Company name 
+    1: Patnum
