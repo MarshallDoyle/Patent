@@ -145,7 +145,7 @@ int main() {
         std::vector<std::vector<std::string>> noMatchData;
     
         // Read the first input file for unique assignees
-        io::CSVReader<4, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > assigneeReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_unique_assignee\\Unique_Assignee_sorted_by_Uncleaned.csv");
+        io::CSVReader<4, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > assigneeReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_assignee\\Sorted_Cleaned_assignee_assignee.csv");
         assigneeReader.read_header(io::ignore_extra_column, "patnum", "assignee", "pgpub_id", "assignee_cleaned");
 
 
@@ -204,6 +204,10 @@ int main() {
         int numMatches = matchedData.size();
         int numNonMatches = noMatchData.size();
         
+        // Write processed data to CSV files
+        writeCSV("c:\\Users\\marsh\\Patent Tracking\\Matched\\Matched_csrp_permco_AllAsssignee.csv", matchedData);
+        writeCSV("c:\\Users\\marsh\\Patent Tracking\\Matched\\UnMatched_csrp_permco_AllAssignee.csv", noMatchData);
+
         // Print the number of matches and non-matches
         std::cout << "Finished Matching" << std::endl;
         std::cout << "Number of Matches: " << numMatches << std::endl;
