@@ -1,15 +1,18 @@
 import csv
 
-def sort_csv_alphabetically(input_file_path, output_file_path, column_name):
+def sort_csv_by_column_index(input_file_path, output_file_path, column_index):
     try:
         with open(input_file_path, mode='r', newline='', encoding='utf-8') as file_in:
             reader = csv.DictReader(file_in)
             fieldnames = reader.fieldnames
 
-            # Check if the specified column exists in the CSV
-            if column_name not in fieldnames:
-                print(f"Column '{column_name}' not found in {input_file_path}. Skipping this file.")
+            # Check if the specified column index is valid
+            if column_index < 0 or column_index >= len(fieldnames):
+                print(f"Column index {column_index} is out of range for {input_file_path}. Skipping this file.")
                 return
+            
+            # Retrieve the column name using the index
+            column_name = fieldnames[column_index]
 
             # Read data and sort by the specified column
             data = [row for row in reader]
@@ -26,8 +29,8 @@ def sort_csv_alphabetically(input_file_path, output_file_path, column_name):
         print(f"An error occurred: {e}")
 
 # Example usage
-input_file_path = 'path/to/input.csv' # Replace with your input file path
-output_file_path = 'path/to/output.csv' # Replace with your desired output file path
-column_to_sort_by = 'column_name' # Replace with the column you want to sort by
+input_file_path = 'c:\Users\marsh\Patent Tracking\Cleaned\Cleaned_csrp_permco.csv' # Replace with your input file path
+output_file_path = 'c:\Users\marsh\Patent Tracking\Sorted\Sorted_crsp_permo\CSRP_Permco_Sorted_by_Cleaned.csv' # Replace with your desired output file path
+column_index_to_sort_by = 0 # Replace with the index of the column you want to sort by (starting from 0)
 
-sort_csv_alphabetically(input_file_path, output_file_path, column_to_sort_by)
+sort_csv_by_column_index(input_file_path, output_file_path, column_index_to_sort_by)
