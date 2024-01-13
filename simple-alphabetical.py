@@ -29,8 +29,8 @@ def sort_csv_by_column_index(input_file_path, output_file_path, column_index):
         print(f"An error occurred: {e}")
 
 # Example usage
-input_file_path = 'c:\Users\marsh\Patent Tracking\Cleaned\Cleaned_csrp_permco.csv' # Replace with your input file path
-output_file_path = 'c:\Users\marsh\Patent Tracking\Sorted\Sorted_crsp_permo\CSRP_Permco_Sorted_by_Cleaned.csv' # Replace with your desired output file path
+input_file_path = 'c:/Users/marsh/Patent Tracking/Cleaned/Cleaned_csrp_permco.csv'
+output_file_path = 'c:/Users/marsh/Patent Tracking/Sorted/Sorted_crsp_permo/CSRP_Permco_Sorted_by_UnCleaned.csv'
 column_index_to_sort_by = 0 # Replace with the index of the column you want to sort by (starting from 0)
 
 sort_csv_by_column_index(input_file_path, output_file_path, column_index_to_sort_by)

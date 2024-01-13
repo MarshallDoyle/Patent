@@ -5,6 +5,41 @@ Assignee all
     1: File date this is just an example
     2: Patnum
 
+Assignee Unique
+    0: Patnum
+    1: Uncleaned Assignee
+    2: pgpub_id
+    3: Cleaned Assignee
+
 Gvkey
     0: Company name 
     1: Patnum
+
+CSRP-Permco
+    0: Uncleaned Company Name 
+    1: Patnum
+    2: Cleaned Company Name
+
+
+
+
+MATCHES
+CSRP-Permco to Unique Assignee
+    0: Uncleaned Company Name 
+    1: Patnum
+    2: Cleaned Company Name
+    3: Cleaned Assignee
+    4: pgpub_id
+    5: Match Type (Exact or Fuzz or No Match)
+    6: Levenshtein Score
+    7: Length Score
+
+CSRP-Permco to Unique Assignee
+    0: Uncleaned Company Name 
+    1: Patnum
+    2: Cleaned Company Name
+    3: Cleaned Assignee
+    4: pgpub_id
+    5: Match Type (Exact or Fuzz or No Match)
+    6: Levenshtein Score
+    7: Length Score

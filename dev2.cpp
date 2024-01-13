@@ -200,9 +200,14 @@ int main() {
         }
     }
 
-        // Write processed data to CSV files
-        writeCSV("c:\\Users\\marsh\\Patent Tracking\\Matched\\Matched_csrp_permco.csv", matchedData);
-        writeCSV("c:\\Users\\marsh\\Patent Tracking\\Matched\\UnMatched_csrp_permco.csv", noMatchData);
+        // Count the number of matches and non-matches
+        int numMatches = matchedData.size();
+        int numNonMatches = noMatchData.size();
+        
+        // Print the number of matches and non-matches
+        std::cout << "Finished Matching" << std::endl;
+        std::cout << "Number of Matches: " << numMatches << std::endl;
+        std::cout << "Number of Non-Matches: " << numNonMatches << std::endl;
 
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
