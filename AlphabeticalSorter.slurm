@@ -25,60 +25,60 @@ case "$SLURM_ARRAY_TASK_ID" in
     1)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_assignee_all.csv" #Give the file a name like "sorted_cleaned_assignee_all_by_assignee.csv"
-        COLUMN_TO_READ=1  
+        COLUMN_TO_READ=3  
         ;;
     2)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all_unique.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_assignee_all_unique.csv"
-        COLUMN_TO_READ=1 #This is the column that gets sorted
+        COLUMN_TO_READ=3 #This is the column that gets sorted
         ;;
     3)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_capitalcusip.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_capitalcusip.csv" 
-        COLUMN_TO_READ=1  
+        COLUMN_TO_READ=2  
         ;;
     4)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_csrp_permco.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_csrp_permco.csv"
-        COLUMN_TO_READ=0
+        COLUMN_TO_READ=2
         ;;
     5)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_gvkey.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_gvkey.csv" 
-        COLUMN_TO_READ=1
+        COLUMN_TO_READ=2
         ;;
     6)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_SEC_CIK.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_SEC_CIK.csv"
-        COLUMN_TO_READ=1
+        COLUMN_TO_READ=2
         ;;
     7)
-        INPUT_FILE="/N/u/gklinge/Quartz/assignee_all.csv"
+        INPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_uncleaned_cleaned_assignee_all.csv" #Give the file a name like "sorted_cleaned_assignee_all_by_assignee.csv"
         COLUMN_TO_READ=1  
         ;;
     8)
-        INPUT_FILE="/N/u/gklinge/Quartz/assignee_all_unique.csv"
+        INPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all_unique.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_uncleaned_cleaned_assignee_all_unique.csv"
         COLUMN_TO_READ=1 #This is the column that gets sorted
         ;;
     9)
-        INPUT_FILE="/N/u/gklinge/Quartz/capitalcusip.csv"
+        INPUT_FILE="/N/u/gklinge/Quartz/cleaned_capitalcusip.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_uncleaned_cleaned_capitalcusip.csv" 
         COLUMN_TO_READ=1  
         ;;
     10)
-        INPUT_FILE="/N/u/gklinge/Quartz/csrp_permco.csv"
+        INPUT_FILE="/N/u/gklinge/Quartz/cleaned_csrp_permco.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_uncleaned_cleaned_csrp_permco.csv"
         COLUMN_TO_READ=0
         ;;
     11)
-        INPUT_FILE="/N/u/gklinge/Quartz/gvkey.csv"
+        INPUT_FILE="/N/u/gklinge/Quartz/cleaned_gvkey.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_uncleaned_cleaned_gvkey.csv" 
         COLUMN_TO_READ=1
         ;;
     12)
-        INPUT_FILE="/N/u/gklinge/Quartz/SEC_CIK.csv"
+        INPUT_FILE="/N/u/gklinge/Quartz/cleaned_SEC_CIK.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_uncleaned_cleaned_SEC_CIK.csv"
         COLUMN_TO_READ=1
         ;;
