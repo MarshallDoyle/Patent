@@ -205,8 +205,8 @@ int main() {
         int numNonMatches = noMatchData.size();
         
         // Write processed data to CSV files
-        writeCSV("c:\\Users\\marsh\\Patent Tracking\\Matched\\Matched_csrp_permco_AllAsssignee.csv", matchedData);
-        writeCSV("c:\\Users\\marsh\\Patent Tracking\\Matched\\UnMatched_csrp_permco_AllAssignee.csv", noMatchData);
+        writeCSV("c:\\Users\\marsh\\Patent Tracking\\Matched\\Matched_csrp_permco.csv", matchedData);
+        writeCSV("c:\\Users\\marsh\\Patent Tracking\\Matched\\UnMatched_csrp_permco.csv", noMatchData);
 
         // Print the number of matches and non-matches
         std::cout << "Finished Matching" << std::endl;
