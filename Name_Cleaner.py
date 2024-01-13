@@ -295,8 +295,14 @@ full_data = []
 
 with open(input_file, 'r', encoding='utf-8') as infile:
     csv_reader = csv.reader(infile)
+    headers = next(csv_reader)  # Read the first line as headers
     total_rows = sum(1 for row in csv.reader(open(input_file, 'r', encoding='utf-8')))
     infile.seek(0)
+
+    # Modify the specific header and insert it
+    modified_header = "Cleaned " + headers[COLUMN_TO_READ]
+    headers.insert(COLUMN_TO_COPY_TO, modified_header)
+
     for i, row in enumerate(csv_reader, 1):
         if len(row) >= COLUMN_TO_READ:
             original_name = row[COLUMN_TO_READ]
@@ -308,6 +314,7 @@ with open(input_file, 'r', encoding='utf-8') as infile:
 
 with open(output_file, 'w', newline='', encoding='utf-8') as outfile:
     csv_writer = csv.writer(outfile)
+    csv_writer.writerow(headers)  # Write the modified headers
     for row in full_data:
         csv_writer.writerow(row)
 
