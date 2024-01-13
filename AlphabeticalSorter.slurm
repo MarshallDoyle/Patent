@@ -11,7 +11,7 @@
 #SBATCH --mail-type=BEGIN,END
 #SBATCH --mem 100G
 #SBATCH -A r00638
-#SBATCH --array=1-6
+#SBATCH --array=1-12
 
 module load python
 
@@ -22,7 +22,6 @@ source ~/myenv/bin/activate
 
 # Define file paths and column numbers for each job in the array
 case "$SLURM_ARRAY_TASK_ID" in
-    #Cleaned Sort
     1)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_assignee_all.csv" #Give the file a name like "sorted_cleaned_assignee_all_by_assignee.csv"
@@ -53,7 +52,6 @@ case "$SLURM_ARRAY_TASK_ID" in
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_SEC_CIK.csv"
         COLUMN_TO_READ=1
         ;;
-    #Uncleaned Sort
     7)
         INPUT_FILE="/N/u/gklinge/Quartz/assignee_all.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_uncleaned_cleaned_assignee_all.csv" #Give the file a name like "sorted_cleaned_assignee_all_by_assignee.csv"
