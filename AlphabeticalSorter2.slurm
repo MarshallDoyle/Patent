@@ -11,7 +11,7 @@
 #SBATCH --mail-type=BEGIN,END
 #SBATCH --mem 100G
 #SBATCH -A r00638
-#SBATCH --array=1-12
+#SBATCH --array=1-6
 
 module load python
 
