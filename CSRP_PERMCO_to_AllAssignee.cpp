@@ -144,7 +144,7 @@ int main() {
         std::vector<std::vector<std::string>> matchedData;
         std::vector<std::vector<std::string>> noMatchData;
     
-        // Read the first input file for unique assignees
+        // Read the first input file for unique assignees sorted by assignee
         io::CSVReader<4, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > assigneeReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_assignee\\Sorted_Cleaned_assignee_assignee.csv");
         assigneeReader.read_header(io::ignore_extra_column, "patnum", "assignee", "pgpub_id", "assignee_cleaned");
 
@@ -155,7 +155,26 @@ int main() {
             assignees.push_back({patnum, uncleanedAssignee, pgpubId, cleanedAssignee});
         }
 
-        // Read the second input file for CSRP permco dataset
+        // Read the second input file for CSRP permco dataset sorted by uncleaned company name
+        std::vector<std::vector<std::string>> data;
+        io::CSVReader<3, io::trim_chars<' ', '\t'>, io::no_quote_escape<','> > dataReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_crsp_permo\\CSRP_Permco_Sorted_by_UnCleaned.csv");
+        std::string uncleanedCompanyName, companyPatnum, cleanedCompanyName;
+        while(dataReader.read_row(uncleanedCompanyName, companyPatnum, cleanedCompanyName)){
+            data.push_back({uncleanedCompanyName, companyPatnum, cleanedCompanyName});
+        }
+
+        // Read the third input file for unique assignees sorted by assignee_cleaned
+        io::CSVReader<4, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > assigneeReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_assignee\\Sorted_Cleaned_assignee_assignee_cleaned.csv");
+        assigneeReader.read_header(io::ignore_extra_column, "patnum", "assignee", "pgpub_id", "assignee_cleaned");
+
+
+        std::vector<std::vector<std::string>> assignees; // Remove this line, it's a duplicate declaration
+        std::string patnum, uncleanedAssignee, pgpubId, cleanedAssignee;
+        while(assigneeReader.read_row(patnum, uncleanedAssignee, pgpubId, cleanedAssignee)){
+            assignees.push_back({patnum, uncleanedAssignee, pgpubId, cleanedAssignee});
+        }
+
+        // Read the foruth input file for CSRP permco dataset sorted by cleaned company name
         std::vector<std::vector<std::string>> data;
         io::CSVReader<3, io::trim_chars<' ', '\t'>, io::no_quote_escape<','> > dataReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_crsp_permo\\CSRP_Permco_Sorted_by_UnCleaned.csv");
         std::string uncleanedCompanyName, companyPatnum, cleanedCompanyName;

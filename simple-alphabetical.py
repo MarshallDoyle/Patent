@@ -21,7 +21,7 @@ def sort_csv_by_column_index(input_file_path, output_file_path, column_index):
 
             # Read data and sort by the specified column
             data = [row for row in reader]
-            data.sort(key=lambda row: row.get(column_name, '').lower())
+            data.sort(key=lambda row: row.get(column_name, ''))
 
         with open(output_file_path, mode='w', newline='', encoding='utf-8') as file_out:
             writer = csv.DictWriter(file_out, fieldnames=fieldnames)
