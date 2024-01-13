@@ -1,8 +1,10 @@
 import csv
+import sys 
 
-input_file_path = ' '
-output_file_path = ' '
-column_index_to_sort_by = 1 
+input_file_path = sys.argv[1]
+output_file_path = sys.argv[2]
+column_index_to_sort_by = int(sys.argv[3])
+
 def sort_csv_by_column_index(input_file_path, output_file_path, column_index):
     try:
         with open(input_file_path, mode='r', newline='', encoding='utf-8') as file_in:
