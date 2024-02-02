@@ -155,9 +155,9 @@ int main() {
             assignees.push_back({patnum, uncleanedAssignee, pgpubId, cleanedAssignee});
         }
 
-        // Read the second input file for CSRP permco dataset
+        // Read the second input file for CUSIP dataset
         std::vector<std::vector<std::string>> data;
-        io::CSVReader<3, io::trim_chars<' ', '\t'>, io::no_quote_escape<','> > dataReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_capital_cusip\\Sorted_Cleaned_capital_cusip_assignee.csv");
+        io::CSVReader<3, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > dataReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_capital_cusip\\Sorted_Cleaned_capital_cusip_assignee.csv");
         std::string cusip, assignee, assignee_cleaned;
         while(dataReader.read_row(cusip, assignee, assignee_cleaned)){
             data.push_back({cusip, assignee, assignee_cleaned});
@@ -175,25 +175,25 @@ int main() {
 
             if (searchIndex != -1) {
                 // Exact match found
-                levenshteinScore = levenshteinDistance(toLower(strip(assignee)), toLower(strip(data[searchIndex][0])));
-                lengthScoreVal = lengthScore(assignee, data[searchIndex][0], levenshteinScore);
+                levenshteinScore = levenshteinDistance(toLower(strip(assignee)), toLower(strip(data[searchIndex][1])));
+                lengthScoreVal = lengthScore(assignee, data[searchIndex][1], levenshteinScore);
 
                 // Prepare row for matched data
                 row = {data[searchIndex][0], data[searchIndex][1], data[searchIndex][2], assignee, "Exact", std::to_string(levenshteinScore), std::to_string(lengthScoreVal)};
                 matchedData.push_back(row);
-                std::cout << "Matched row #" << i+1 << ": " << assignee << " with " << data[searchIndex][0] << " using exact match." << std::endl;
+                std::cout << "Matched row #" << i+1 << ": " << assignee << " with " << data[searchIndex][1] << " using exact match." << std::endl;
 
             } else {
              // Closest match
                 searchIndex = binary_search_with_levenshtein(data, 0, assignee);
                 if (searchIndex != -1) {
-                    levenshteinScore = levenshteinDistance(toLower(strip(assignee)), toLower(strip(data[searchIndex][0])));
-                    lengthScoreVal = lengthScore(assignee, data[searchIndex][0], levenshteinScore);
+                    levenshteinScore = levenshteinDistance(toLower(strip(assignee)), toLower(strip(data[searchIndex][1])));
+                    lengthScoreVal = lengthScore(assignee, data[searchIndex][1], levenshteinScore);
 
                     // Prepare row for no match data
                     row = {data[searchIndex][0], data[searchIndex][1], data[searchIndex][2], assignee, "No Match", std::to_string(levenshteinScore), std::to_string(lengthScoreVal)};
                     noMatchData.push_back(row);
-                    std::cout << "Matched row #" << i+1 << ": " << assignee << " with " << data[searchIndex][0] << " using closest match." << std::endl;
+                    std::cout << "Matched row #" << i+1 << ": " << assignee << " with " << data[searchIndex][1] << " using closest match." << std::endl;
                 } else {
                 std::cout << "Did not match row #" << i+1 << ": " << assignee << std::endl;
             }

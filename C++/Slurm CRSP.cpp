@@ -145,11 +145,11 @@ int main() {
         std::vector<std::vector<std::string>> noMatchData;
     
         // Read the first input file for unique assignees
-        io::CSVReader<4, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > assigneeReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_unique_assignee\\Unique_Assignee_sorted_by_Uncleaned.csv");
+        io::CSVReader<4, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > assigneeReader("\\N\\u\\gklinge\\Quartz\\Sorted_by_cleaned_cleaned_assignee_all_unique.csv");
         assigneeReader.read_header(io::ignore_extra_column, "patnum", "assignee", "pgpub_id", "assignee_cleaned");
 
 
-        std::vector<std::vector<std::string>> assignees; // Remove this line, it's a duplicate declaration
+        std::vector<std::vector<std::string>> assignees; 
         std::string patnum, uncleanedAssignee, pgpubId, cleanedAssignee;
         while(assigneeReader.read_row(patnum, uncleanedAssignee, pgpubId, cleanedAssignee)){
             assignees.push_back({patnum, uncleanedAssignee, pgpubId, cleanedAssignee});
@@ -157,10 +157,10 @@ int main() {
 
         // Read the second input file for CSRP permco dataset
         std::vector<std::vector<std::string>> data;
-        io::CSVReader<3, io::trim_chars<' ', '\t'>, io::no_quote_escape<','> > dataReader("c:\\Users\\marsh\\Patent Tracking\\Sorted\\Sorted_crsp_permo\\CSRP_Permco_Sorted_by_UnCleaned.csv");
-        std::string uncleanedCompanyName, companyPatnum, cleanedCompanyName;
-        while(dataReader.read_row(uncleanedCompanyName, companyPatnum, cleanedCompanyName)){
-            data.push_back({uncleanedCompanyName, companyPatnum, cleanedCompanyName});
+        io::CSVReader<3, io::trim_chars<' ', '\t'>, io::no_quote_escape<','> > dataReader("\\N\\u\\gklinge\\Quartz\\Sorted_by_cleaned_cleaned_csrp_permco.csv");
+        std::string uncleanedCompanyName, permco, cleanedCompanyName;
+        while(dataReader.read_row(uncleanedCompanyName, permco, cleanedCompanyName)){
+            data.push_back({uncleanedCompanyName, permco, cleanedCompanyName});
         }
 
         
@@ -221,3 +221,5 @@ int main() {
     return 0;
 }
 
+//Compile with: g++ -o slurm_csrp Slurm_CSRP.cpp
+//Run with: ./slurm_csrp

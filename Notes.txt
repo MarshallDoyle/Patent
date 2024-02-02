@@ -1,36 +1,99 @@
 Keep a ledger of all the datasets you have and the column headers here to make things simple and keep track of progress.
 
-Assignee Unique 
+Assignee Unique #This is Correct
     0: Patnum
     1: Uncleaned Assignee
     2: pgpub_id
     3: Cleaned Assignee
 
-Gvkey
-    0: Company name 
-    1: Patnum
+All Assignee #This is Correct
+    0: Patnum
+    1: Uncleaned Assignee
+    2: pgpub_id
+    3: Cleaned Assignee
+
+Gvkey #This is Correct
+    0: GVKEY
+    1: Company Name
+    2: Cleaned Company Name
 
 CSRP-Permco #This is Correct
     0: Uncleaned Company Name 
     1: Patnum
     2: Cleaned Company Name
 
+CUSIP  #This is Correct
+    0: cusip
+    1: assignee
+    2: assignee_cleaned
+
+SEC-CIK #This is Correct
+    0: CIK
+    1: company_name
+    2: Cleaned_Company_Name
 
 
-
-MATCHES
+Initial MATCH Output
 CSRP-Permco to Unique Assignee #This is Correct
-    0: Uncleaned Company Name 
-    1: Patnum
-    2: Cleaned Company Name
-    3: Cleaned Assignee
-    4: pgpub_id
-    5: Match Type (Exact or Fuzz or No Match)
-    6: Levenshtein Score
-    7: Length Score
+    0: CSRP Uncleaned Company Name 
+    1: CSRP Patnum
+    2: CSRP Cleaned Company Name
+    3: CSRP Cleaned Assignee
+    4: Unique Assignee pgpub_id
+    5: Unique Assignee Uncleaned Assignee
+    6: Unqiue Assignee Cleaned Assignee 
+    7: Unique Assignee Patnum
+    8: Match Type (Exact or Fuzz or No Match)
+    9: Levenshtein Score
+    10: Length Score
+
 
 Gvkey to Unique Assignee #This is Correct
-    0: Gvkey Company Name 
-    1: Gvkey Patnum
-    2:
-    3:
+    0: Gvkey 
+    1: GVkey Company Name
+    2: GVkey Cleaned Company Name
+    3: 
+
+
+
+
+
+
+
+
+
+
+
+
+// Function to read unique assignees sorted by assignee from a CSV file
+std::vector<std::vector<std::string>> readAssignees(const std::string& filePath) {
+    std::vector<std::vector<std::string>> assignees;
+    try {
+        io::CSVReader<4, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > assigneeReader(filePath);
+        assigneeReader.read_header(io::ignore_extra_column, "patnum", "assignee", "pgpub_id", "assignee_cleaned");
+
+        std::string patnum, uncleanedAssignee, pgpubId, cleanedAssignee;
+        while (assigneeReader.read_row(patnum, uncleanedAssignee, pgpubId, cleanedAssignee)) {
+            assignees.push_back({patnum, uncleanedAssignee, pgpubId, cleanedAssignee});
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Error reading assignees: " << e.what() << std::endl;
+    }
+    return assignees;
+}
+
+// Function to read unique assignees sorted by assignee_cleaned from a CSV file
+std::vector<std::vector<std::string>> readCleanedAssignees(const std::string& filePath) {
+    std::vector<std::vector<std::string>> cleanAssignees;
+    try {
+        io::CSVReader<4, io::trim_chars<' ', '\t'>, io::double_quote_escape<',','\"'> > cleanAssigneeReader(filePath);
+        cleanAssigneeReader.read_header(io::ignore_extra_column, "patnum", "assignee", "pgpub_id", "assignee_cleaned");
+        std::string patnum, uncleanedAssignee, pgpubId, cleanedAssignee;
+        while (cleanAssigneeReader.read_row(patnum, uncleanedAssignee, pgpubId, cleanedAssignee)) {
+            cleanAssignees.push_back({patnum, uncleanedAssignee, pgpubId, cleanedAssignee});
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Error reading cleaned assignees: " << e.what() << std::endl;
+    }
+    return cleanAssignees;
+}
