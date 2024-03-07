@@ -25,12 +25,12 @@ case "$SLURM_ARRAY_TASK_ID" in
     1)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_assignee_all.csv" #Give the file a name like "sorted_cleaned_assignee_all_by_assignee.csv"
-        COLUMN_TO_READ=3  
+        COLUMN_TO_READ=4  
         ;;
     2)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all_unique.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_assignee_all_unique.csv"
-        COLUMN_TO_READ=3 #This is the column that gets sorted
+        COLUMN_TO_READ=2 #This is the column that gets sorted
         ;;
     3)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_capitalcusip.csv"
@@ -40,7 +40,7 @@ case "$SLURM_ARRAY_TASK_ID" in
     4)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_csrp_permco.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_cleaned_cleaned_csrp_permco.csv"
-        COLUMN_TO_READ=2
+        COLUMN_TO_READ=3
         ;;
     5)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_gvkey.csv"
@@ -60,7 +60,7 @@ case "$SLURM_ARRAY_TASK_ID" in
     8)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all_unique.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/Sorted_by_uncleaned_cleaned_assignee_all_unique.csv"
-        COLUMN_TO_READ=1 #This is the column that gets sorted
+        COLUMN_TO_READ=0 #This is the column that gets sorted
         ;;
     9)
         INPUT_FILE="/N/u/gklinge/Quartz/cleaned_capitalcusip.csv"
