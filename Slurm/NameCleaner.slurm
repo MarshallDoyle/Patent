@@ -66,4 +66,4 @@ esac
 cd $SLURM_SUBMIT_DIR
 
 # Run the Python program with the specified arguments
-srun python Name_Cleaner.py "$INPUT_FILE" "$OUTPUT_FILE" "$COLUMN_TO_READ" "$COLUMN_TO_COPY_TO"
+srun python ../Python/Name_Cleaner.py "$INPUT_FILE" "$OUTPUT_FILE" "$COLUMN_TO_READ" "$COLUMN_TO_COPY_TO"
