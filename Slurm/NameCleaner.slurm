@@ -9,7 +9,7 @@
 #SBATCH --time=8:00:00
 #SBATCH --mail-user=gklinge@iu.edu
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --mem 5G
+#SBATCH --mem 100G
 #SBATCH -A r00638
 #SBATCH --array=1-6
 
