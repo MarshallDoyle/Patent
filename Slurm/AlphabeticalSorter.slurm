@@ -87,4 +87,4 @@ esac
 cd $SLURM_SUBMIT_DIR
 
 # Run the Python program with the specified arguments
-srun python simple-alphabetical.py "$INPUT_FILE" "$OUTPUT_FILE" "$COLUMN_TO_READ" 
+srun python ../Python/simple-alphabetical.py "$INPUT_FILE" "$OUTPUT_FILE" "$COLUMN_TO_READ" 
