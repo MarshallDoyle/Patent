@@ -9,7 +9,7 @@
 #SBATCH --time=8:00:00
 #SBATCH --mail-user=gklinge@iu.edu
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --mem 5G
+#SBATCH --mem 100G
 #SBATCH -A r00638
 #SBATCH --array=1-6
 
@@ -28,13 +28,13 @@ case "$SLURM_ARRAY_TASK_ID" in
         INPUT_FILE="/N/u/gklinge/Quartz/assignees_dirty_all.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all.csv"
         COLUMN_TO_READ=1  # Assuming 'assignee' is the column to clean
-        COLUMN_TO_COPY_TO=3
+        COLUMN_TO_COPY_TO=4
         ;;
     2)
         INPUT_FILE="/N/u/gklinge/Quartz/assignees_unique_dirty.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/cleaned_assignee_all_unique.csv"
         COLUMN_TO_READ=0
-        COLUMN_TO_COPY_TO=1
+        COLUMN_TO_COPY_TO=2
         ;;
     3)
         INPUT_FILE="/N/u/gklinge/Quartz/capitaliq_cusip_dirty.csv"
@@ -46,7 +46,7 @@ case "$SLURM_ARRAY_TASK_ID" in
         INPUT_FILE="/N/u/gklinge/Quartz/crsp_permco_dirty.csv"
         OUTPUT_FILE="/N/u/gklinge/Quartz/cleaned_csrp_permco.csv"
         COLUMN_TO_READ=0
-        COLUMN_TO_COPY_TO=2
+        COLUMN_TO_COPY_TO=3
         ;;
     5)
         INPUT_FILE="/N/u/gklinge/Quartz/gvkey_dirty.csv"
@@ -66,4 +66,4 @@ esac
 cd $SLURM_SUBMIT_DIR
 
 # Run the Python program with the specified arguments
-srun python Name_Cleaner.py "$INPUT_FILE" "$OUTPUT_FILE" "$COLUMN_TO_READ" "$COLUMN_TO_COPY_TO"
+srun python ../Python/Name_Cleaner.py "$INPUT_FILE" "$OUTPUT_FILE" "$COLUMN_TO_READ" "$COLUMN_TO_COPY_TO"
